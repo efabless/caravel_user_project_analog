@@ -18,6 +18,7 @@ CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
 SIM ?= RTL
 
+export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
