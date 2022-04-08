@@ -29,7 +29,7 @@ jobs:
 
           - name: Download PDK
             run: |
-              MPW_TAG=main CARAVEL_LITE=0 make install
+              MPW_TAG=volare_integration CARAVEL_LITE=0 make install
               make pdk-with-volare
           
           - name: Run MPW-Precheck
