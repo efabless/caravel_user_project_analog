@@ -22,7 +22,7 @@ export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-6a
+MPW_TAG ?= mpw-6b
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
