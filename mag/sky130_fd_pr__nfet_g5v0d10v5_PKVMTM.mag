@@ -1,5 +1,5 @@
 magic
-tech sky130A
+tech $PDK
 timestamp 1606063140
 << pwell >>
 rect -154 -229 154 229

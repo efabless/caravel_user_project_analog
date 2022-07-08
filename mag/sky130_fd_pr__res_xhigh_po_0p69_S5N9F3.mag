@@ -1,5 +1,5 @@
 magic
-tech sky130A
+tech $PDK
 magscale 1 2
 timestamp 1606074388
 << pwell >>
