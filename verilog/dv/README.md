@@ -80,8 +80,7 @@ make -j$(nproc)
 First, you will need to export a number of environment variables: 
 
 ```bash
-export PDK=sky130B
-export PDK_PATH=<pdk-location>/$PDK
+export PDK_PATH=<pdk-location/sky130A>
 export CARAVEL_ROOT=<caravel_root>
 export UPRJ_ROOT=<user_project_root>
 ```
@@ -106,8 +105,7 @@ You will need to export these environment variables:
 
 ```bash
 export GCC_PATH=<gcc-installation-path>
-export PDK=sky130B
-export PDK_PATH=<pdk-location>/$PDK
+export PDK_PATH=<pdk-location/sky130A>
 ```
 
 Then, follow the instruction at [Both](#both) to run RTL/GL simulation.

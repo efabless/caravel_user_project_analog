@@ -21,4 +21,4 @@
 # includes used by the testbench simulation are picked up.  Otherwise, the LVS
 # itself compares just the simple_por subcircuit from the testbench.
 #--------------------------------------------------------------------------------
-netgen -batch lvs "example_por.spice example_por" "../xschem/example_por_tb.spice example_por" $PDK_ROOT/$PDK/libs.tech/netgen/$PDK\_setup.tcl comp.out
+netgen -batch lvs "example_por.spice example_por" "../xschem/example_por_tb.spice example_por" /usr/share/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl comp.out
