@@ -19,4 +19,4 @@
 # top-level verilog module.
 #
 #--------------------------------------------------------------------------------
-netgen -batch lvs "user_analog_project_wrapper.spice user_analog_project_wrapper" "../verilog/rtl/user_analog_project_wrapper.v user_analog_project_wrapper" /usr/share/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl comp.out
+netgen -batch lvs "user_analog_project_wrapper.spice user_analog_project_wrapper" "../verilog/rtl/user_analog_project_wrapper.v user_analog_project_wrapper" $PDK_ROOT/$PDK/libs.tech/netgen/$PDK\_setup.tcl comp.out
