@@ -15,8 +15,6 @@
 
 `default_nettype none
 
-`include "example_por.v"
-
 /*
  * I/O mapping for analog
  *

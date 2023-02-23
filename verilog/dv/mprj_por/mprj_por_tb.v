@@ -17,10 +17,6 @@
 
 `timescale 1 ns / 1 ps
 
-`include "uprj_analog_netlists.v"
-`include "caravan_netlists.v"
-`include "spiflash.v"
-`include "tbuart.v"
 
 module mprj_por_tb;
     // Signals declaration
