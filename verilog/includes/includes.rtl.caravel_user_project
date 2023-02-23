@@ -1,0 +1,7 @@
+# Caravel user project includes
+-v $(USER_PROJECT_VERILOG)/rtl/user_analog_project_wrapper.v	     
+-v $(USER_PROJECT_VERILOG)/rtl/example_por.v
+-v $(USER_PROJECT_VERILOG)/rtl/user_analog_proj_example.v
+
+
+ 
