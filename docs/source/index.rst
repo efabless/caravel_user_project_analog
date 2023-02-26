@@ -44,6 +44,13 @@ Overview
 
 This repo contains a sample user project that utilizes the caravan chip (analog version of `caravel <https://github.com/efabless/caravel.git>`__) user space. The user project is a simple power-on-reset that showcases how to make use of caravan's user space utilities like IO pads, logic analyzer probes, and wishbone port. The repo also demonstrates the recommended structure for the open-mpw **analog** projects.
 
+Prerequisites
+=============
+
+- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+
+- Python 3.6+ with PIP
+
 Install Caravel
 ===============
 
@@ -161,9 +168,8 @@ Then, run the RTL and GL simulation by
     export PDK_ROOT=<pdk-installation-path>
     export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
-    export SIM=RTL
-    # Run the mprj_por testbench, make verify-mprj_por
-    make verify-<testbench-name>
+    # Run the mprj_por testbench, make verify-mprj_por-rtl
+    make verify-<testbench-name>-<rtl/gl>
 
 The verilog test-benches are under this directory
 `verilog/dv <https://github.com/efabless/caravel_user_project_analog/tree/main/verilog/dv>`__.
