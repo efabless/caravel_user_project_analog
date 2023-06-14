@@ -258,6 +258,12 @@ Specify CARAVEL_ROOT before running any of the following,
 
 This will run all the precheck checks on your project and will retain the logs under the ``checks`` directory.
 
+To disable running LVS/Soft/ERC connection checks:
+
+.. code:: bash
+
+   DISABLE_LVS=1 make run-precheck
+
 Other Miscellaneous Targets
 ============================
 
@@ -288,6 +294,14 @@ Run XOR check,
 .. code:: bash
 
    make xor-analog-wrapper
+
+Run standalone LVS,
+
+    .. code:: bash
+
+        make lvs-<macro_name> # macro is the name of the macro you want to run LVS on
+
+   **NOTE:** You have to create a new config file for each macro under ``lvs/<macro_name>/lvs_config.json``
 
 Checklist for Open-MPW Submission
 =================================
