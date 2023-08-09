@@ -15,8 +15,9 @@
 
 `default_nettype none
 
+`ifndef COCOTB_SIM
 `include "example_por.v"
-
+`endif
 /*
  * I/O mapping for analog
  *
