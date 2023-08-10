@@ -2,12 +2,18 @@ Overview
 ======== 
 This directory contain tests to verify the example user project 16 bit counter and 2 other simple tests as examples. 
 
+Prerequisites
+==============
+
+- ```bash pip install caravel-cocotb```
+- update design_info.yaml
+
 directory hierarchy
 =====================
 
-# counter_tests 
- 
-contain tests for 16 bit counter for more info refer to [counter_tests](counter_tests/README.md)
+# mprj_por 
+
+Example test for the PoR user project example 
  
  # hello_world 
  
@@ -24,14 +30,15 @@ Module that should import all the tests used to be seen for cocotb as a test
  
 Run tests 
 ===========
+# run mprj_por
+    ```bash
+    caravel_cocotb -t mprj_por -tag mprj_por_run 
+    ```
 # run hello_world_uart
     ```bash
     caravel_cocotb -t hello_world_uart -tag hello_world 
     ```
-# run all counter testlist
-    ```bash
-    caravel_cocotb -tl counter_tests/counter_tests.yaml -tag counter_tests 
-    ```
+
 # run from different directory
     ```bash
     caravel_cocotb -t hello_world_uart -tag hello_world -design_info <path to design_info.yaml>
@@ -40,4 +47,3 @@ Run tests
     ```bash
     caravel_cocotb -t hello_world_uart -tag hello_world -sim  <path to results directory>
     ```  
-

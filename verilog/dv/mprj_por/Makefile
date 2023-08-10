@@ -19,6 +19,7 @@ PDK_PATH = $(PDK_ROOT)/$(PDK)
 
 ## Caravel Pointers
 CARAVEL_ROOT ?= ../../../caravel
+MCW_ROOT ?= ../../../caravel_mgmt_soc_litex
 CARAVEL_PATH ?= $(CARAVEL_ROOT)
 CARAVEL_FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
 CARAVEL_VERILOG_PATH  = $(CARAVEL_PATH)/verilog
@@ -31,7 +32,7 @@ UPRJ_RTL_PATH = $(UPRJ_VERILOG_PATH)/rtl
 UPRJ_BEHAVIOURAL_MODELS = ../
 
 ## RISCV GCC 
-GCC_PATH?=/ef/apps/bin
+GCC_PATH?=/opt/riscv/bin
 GCC_PREFIX?=riscv32-unknown-elf
 
 ## Simulation mode: RTL/GL
@@ -50,7 +51,7 @@ hex:  ${PATTERN:=.hex}
 ifeq ($(SIM),RTL)
 	iverilog $(SIM_DEFINES) -I $(PDK_PATH) \
 	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_RTL_PATH) \
-	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH) -I $(MCW_ROOT)/verilog/rtl \
 	$< -o $@ 
 else  
 	iverilog $(SIM_DEFINES) -DGL -I $(PDK_PATH) \
