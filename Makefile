@@ -26,6 +26,7 @@ export PDKPATH?=$(PDK_ROOT)/$(PDK)
 CARAVEL_LITE?=1
 
 MPW_TAG ?= mpw-9d
+export PDK_ROOT?=$(PWD)/dependencies/pdks
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -71,6 +72,9 @@ BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(BLOCKS)
 $(BLOCKS): %:
 	cd openlane && $(MAKE) $*
+
+.PHONY: setup
+setup: check_dependencies install check-env install_mcw pdk-with-volare setup-timing-scripts setup-cocotb
 
 # Install caravel
 .PHONY: install
@@ -176,3 +180,21 @@ check-pdk:
 help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help 
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+.PHONY: check_dependencies
+check_dependencies:
+	@if [ ! -d "$(PWD)/dependencies" ]; then \
+		mkdir $(PWD)/dependencies; \
+	fi
+
+.PHONY: setup-timing-scripts
+setup-timing-scripts: $(TIMING_ROOT)
+	@( cd $(TIMING_ROOT) && git pull )
+	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+
+.PHONY: setup-cocotb
+setup-cocotb: 
+	@pip install caravel-cocotb==1.0.0 
+	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@docker pull efabless/dv:latest
+	@docker pull efabless/dv:cocotb
