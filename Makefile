@@ -19,13 +19,14 @@ PRECHECK_ROOT?=${HOME}/mpw_precheck
 SIM ?= RTL
 CUP_ROOT?=$(PWD)
 
-export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
+SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 export PDK?=sky130A
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-9d
+MPW_TAG ?= mpw-9e
 export PDK_ROOT?=$(PWD)/dependencies/pdks
 
 ifeq ($(CARAVEL_LITE),1)
