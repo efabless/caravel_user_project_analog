@@ -26,7 +26,7 @@ export PDKPATH?=$(PDK_ROOT)/$(PDK)
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-9e
+MPW_TAG ?= mpw-9f
 export PDK_ROOT?=$(PWD)/dependencies/pdks
 
 ifeq ($(CARAVEL_LITE),1)
