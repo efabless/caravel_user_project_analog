@@ -20,7 +20,7 @@ SIM ?= RTL
 CUP_ROOT?=$(PWD)
 
 SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+export OPEN_PDKS_COMMIT?=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
 export PDK?=sky130A
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
