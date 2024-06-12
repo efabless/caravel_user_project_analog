@@ -106,7 +106,7 @@ $(LVS_BLOCKS): lvs-% : ./lvs/%/lvs_config.json uncompress check-pdk check-preche
 # Update Caravel
 .PHONY: update_caravel
 update_caravel: check-caravel
-	cd $(CARAVEL_ROOT)/ && git checkout $(CARAVEL_TAG) && git pull
+	cd $(CARAVEL_ROOT)/ && git checkout $(CARAVEL_TAG) && git pull origin $(CARAVEL_TAG)
 
 # Uninstall Caravel
 .PHONY: uninstall
