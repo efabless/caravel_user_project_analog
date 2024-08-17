@@ -1,0 +1,9 @@
+CARAVEL_ROOT: /home/kanobailey/2409/caravel
+MCW_ROOT: /home/kanobailey/2409/mgmt_project_root
+PDK: sky130B
+PDK_ROOT: /home/kanobailey/2409/pdks
+USER_PROJECT_ROOT: /home/kanobailey/2409/caravel_user_project
+caravan: false
+clk: 25
+emailto:
+- null

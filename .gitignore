@@ -2,3 +2,15 @@
 /precheck_results/
 */tmp
 */*/tmp
+*.hex*
+*.lst
+*.vcd
+*.gtkw
+/env
+/venv
+/caravel
+/runs
+/dependencies
+/mgmt_core_wrapper
+/logs
+/lvs_results
