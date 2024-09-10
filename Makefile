@@ -45,7 +45,7 @@ export ROOTLESS
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
-	export OPENLANE_TAG?=2024.08.15
+	export OPENLANE_TAG?=2023.07.19-2
 	MPW_TAG ?= mpw-9k
 
 ifeq ($(CARAVEL_LITE),1)
@@ -63,7 +63,7 @@ endif
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
-	export OPENLANE_TAG?=2024.08.15
+	export OPENLANE_TAG?=2023.07.19-2
 	MPW_TAG ?= mpw-9k
 
 ifeq ($(CARAVEL_LITE),1)
@@ -343,7 +343,7 @@ install-caravel-cocotb:
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
-	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@(./venv-cocotb/bin/$(PYTHON_BIN) $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 
 .PHONY: setup-cocotb
 setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
