@@ -19,13 +19,15 @@ PRECHECK_ROOT?=${HOME}/mpw_precheck
 SIM ?= RTL
 CUP_ROOT?=$(PWD)
 
-export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
+SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+export OPEN_PDKS_COMMIT?=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
 export PDK?=sky130A
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-9d
+MPW_TAG ?= 2024.09.12-1
+export PDK_ROOT?=$(PWD)/dependencies/pdks
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -72,6 +74,9 @@ BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 $(BLOCKS): %:
 	cd openlane && $(MAKE) $*
 
+.PHONY: setup
+setup: check_dependencies install check-env install_mcw pdk-with-volare setup-timing-scripts setup-cocotb
+
 # Install caravel
 .PHONY: install
 install:
@@ -101,7 +106,7 @@ $(LVS_BLOCKS): lvs-% : ./lvs/%/lvs_config.json uncompress check-pdk check-preche
 # Update Caravel
 .PHONY: update_caravel
 update_caravel: check-caravel
-	cd $(CARAVEL_ROOT)/ && git checkout $(CARAVEL_TAG) && git pull
+	cd $(CARAVEL_ROOT)/ && git checkout $(CARAVEL_TAG) && git pull origin $(CARAVEL_TAG)
 
 # Uninstall Caravel
 .PHONY: uninstall
@@ -176,3 +181,21 @@ check-pdk:
 help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help 
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+.PHONY: check_dependencies
+check_dependencies:
+	@if [ ! -d "$(PWD)/dependencies" ]; then \
+		mkdir $(PWD)/dependencies; \
+	fi
+
+.PHONY: setup-timing-scripts
+setup-timing-scripts: $(TIMING_ROOT)
+	@( cd $(TIMING_ROOT) && git pull )
+	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+
+.PHONY: setup-cocotb
+setup-cocotb: 
+	@pip install caravel-cocotb==1.0.0 
+	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@docker pull efabless/dv:latest
+	@docker pull efabless/dv:cocotb
